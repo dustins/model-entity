@@ -1,9 +1,9 @@
 package com.example.demo;
 
-public class UserModel {
-    public Long id;
-    public String username;
-    public String password;
+public class UserModel implements User {
+    protected Long id;
+    protected String username;
+    protected String password;
 
     public UserModel() {
     }
@@ -14,7 +14,34 @@ public class UserModel {
         this.password = password;
     }
 
-    public static UserModel from(UserEntity userEntity) {
-        return new UserModel(userEntity.getId(), userEntity.getUsername(), userEntity.getPassword());
+    public static UserModel from(User user) {
+        return new UserModel(user.getId(), user.getUsername(), user.getPassword());
+    }
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

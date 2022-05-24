@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Entity
-public class UserEntity {
+public class UserEntity implements User {
     @Id
     @GeneratedValue
     private Long id;
@@ -63,7 +63,7 @@ public class UserEntity {
         this.createdDate = createdDate;
     }
 
-    public static UserEntity from(UserModel userModel) {
-        return new UserEntity(null, userModel.username, userModel.password, LocalDateTime.now());
+    public static UserEntity from(User user) {
+        return new UserEntity(user.getId(), user.getUsername(), user.getPassword(), LocalDateTime.now());
     }
 }
